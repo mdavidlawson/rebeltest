@@ -6,7 +6,6 @@ exports.init = function(req, res){
       ];
       var context = {
         layoutData: {
-        title: 'Rebel Dev Test (Key Value Manager)',
         scripts: scripts,
         // styles: styles,
         meta: {

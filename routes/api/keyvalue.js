@@ -12,10 +12,14 @@ exports.addKeyValuePair = function(req, res){
 }
 exports.delAllKeyValues = function(req, res){
   KeyValuePair.clear();
-  res.end("Cleared");
+  res.end("Deleted all Key Values");
 }
 exports.getAllKeyValuesAsXml = function(req, res){
   var jsonKeyValuePairs = KeyValuePair.list();
   res.set('Content-Type', 'text/xml');
-  res.send(json2xml({keyValues: jsonKeyValuePairs}));
+  res.send(json2xml({keyValueDataStore: jsonKeyValuePairs}));
+}
+exports.delKeyValuePair = function(req, res){
+  KeyValuePair.remove(req.params.key);
+  res.end("Deleted key value: " + req.params.key);
 }
