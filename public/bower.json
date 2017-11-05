@@ -1,0 +1,21 @@
+{
+  "name": "rebel-code-test",
+  "description": "A website to manage key value pairs",
+  "main": "app.js",
+  "authors": [
+    "M. David Lawson"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mdavidlawson/rebeltest",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
