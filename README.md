@@ -68,7 +68,7 @@ From scratch (no dependencies / github clone):
 
 ## Implmentation notes
   * "Thin client" style, with REST API backend. Backend is NodeJS, express and handlebars to render client HTML
-  * Front end uses Bootstrap3 with jQuery and Plain old Javascript. Bootstrap-validator is used on the front to clean up validation
+  * Front end uses Bootstrap3 with jQuery and Plain old Javascript.
   * Persistance is through a single json file which holds the user's key value pairs in JSON format
   * xml2json lib is used at the API layer to convert from JSON to XML
   * Only client responsabilities are running the user interface, and sorting data. Everything else is API controlled.
