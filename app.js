@@ -5,6 +5,7 @@ var api = require("./routes/api");
 var exphbs = require('express-handlebars');
 var app = express();
 var routers = require("./routes");
+app.disable('etag');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

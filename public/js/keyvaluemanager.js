@@ -29,7 +29,9 @@ function loadKeyValueList(sortByName, sortByValue){
 
     var keys = Object.keys(keyvaluestore);
     if (sortByName){
-      keys.sort();
+      keys.sort(function(k1, k2){
+        return k1.toLowerCase() > k2.toLowerCase();
+      });
     }
     for(index in keys){
       var key = keys[index];
@@ -49,6 +51,9 @@ function clearLocalKeyValueList(){
 function getSelectedValue($listGroup){
   return $listGroup.find(".active").val();
 }
+function clearSelectedValue($listGroup){
+  $listGroup.find(".active").val("");
+}
 
 function convertToJSON(keyValueSelection){
   var keyValueSplit = keyValueSelection.split("=");
@@ -59,16 +64,14 @@ function convertToJSON(keyValueSelection){
 }
 
 // Frontend event handlers
-function onAddClick(){
+function onAddClick(e){
   var $form = $("#keyvalueform");
-  if(!$form.valid || $form.valid()){
-    console.error("Invalid entry, will not submit.");
-    return;
+  if(!$form[0].checkValidity || $form[0].checkValidity()){
+    var keyValueSelection = getSelectedValue($("#keyvalueinput"));
+    $.post("/api/keyvaluestore/keyvalue", convertToJSON(keyValueSelection)).done(function(resp){
+      loadKeyValueList($("#sortbynamebtn").hasClass("active"), $("#sortbyvaluebtn").hasClass("active"));
+    });
   }
-  var keyValueSelection = getSelectedValue($("#keyvalueinput"));
-  $.post("/api/keyvaluestore/keyvalue", convertToJSON(keyValueSelection)).done(function(resp){
-    loadKeyValueList($("#sortbynamebtn").hasClass("active"), $("#sortbyvaluebtn").hasClass("active"));
-  });
 }
 function onListClick(e){
   e.preventDefault()
@@ -89,6 +92,10 @@ function onRemoveSelectedClick(){
   }).done(function(resp){
     loadKeyValueList($("#sortbynamebtn").hasClass("active"), $("#sortbyvaluebtn").hasClass("active"));
   });
+
+  // For better usability, in case the user is intending to use this to clear the left hand input, also clear the selected element to add
+  clearSelectedValue($("#keyvalueinput"));
+
 }
 function onClearClick(){
   console.log("Clearing");
@@ -99,6 +106,8 @@ function onClearClick(){
     loadKeyValueList($("#sortbynamebtn").hasClass("active"), $("#sortbyvaluebtn").hasClass("active"));
   });
 
+  // in case the user also intends on clearing the left hand input:
+  $("#keyvalueinput>input").val("");
 }
 function onSortByNameClick(){
   console.log("Sorting by name");
