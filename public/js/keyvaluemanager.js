@@ -8,7 +8,6 @@ $(document).ready(function() {
 
   //lists
   $(".list-group input").click(onListClick);
-
   loadKeyValueList(false, false);
 });
 function loadKeyValueList(sortByName, sortByValue){
@@ -59,7 +58,6 @@ function onListClick(e){
   $that.addClass('active');
 }
 function onAddClick(){
-  $("#keyvalueinput").validator('validate');
   var keyValueSelection = getSelectedValue($("#keyvalueinput"));
   $.post("/api/keyvaluestore/keyvalue", convertToJSON(keyValueSelection)).done(function(resp){
     loadKeyValueList($("#sortbynamebtn").hasClass("active"), $("#sortbyvaluebtn").hasClass("active"));

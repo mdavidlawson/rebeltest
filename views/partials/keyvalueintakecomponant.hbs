@@ -1,20 +1,13 @@
 <div id="keyvalueintake" class="row">
-  <div class="list-group col-md-2">
-  <form id="keyvalueinput" data-toggle="validator" role="form">
-      <!-- input -->
-      <input type="text" pattern="^\w* *= *\w*$" class="list-group-item" data-match-error="failed"></input>
-      <input type="text" class="list-group-item"></input>
-      <input type="text" class="list-group-item"></input>
-      <input type="text" class="list-group-item"></input>
-      <input type="text" class="list-group-item"></input>
-      <input type="text" class="list-group-item"></input>
-      <input type="text" class="list-group-item"></input>
-      <input type="text" class="list-group-item"></input>
-  </form>
+  <div id="keyvalueinput" class="list-group col-md-2">
+    <!-- input -->
+    {{#times 10}}
+      <input class="list-group-item" data-error="Invalid format"  pattern="^\w* *= *\w*$"></input>
+    {{/times}}
 </div>
   <div class="btn-group-vertical col-md-2">
     <!-- control -->
-    <button type="button" class="btn btn-default" id="addbtn">Add</button>
+    <button type="submit" class="btn btn-default" id="addbtn">Add</button>
     <button type="button" class="btn btn-default" id="removeselectedbtn">Remove Selected</button>
     <button type="button" class="btn btn-default" id="clearbtn">Clear</button>
     <a class="btn btn-default" href="/api/keyvaluestore/export/xml" download="keyvaluelist.xml">Download as XML</a>
@@ -24,13 +17,8 @@
   </div>
   <div id="keyvalueoutput" class="list-group col-md-2">
     <!-- output -->
-    <input class="list-group-item"></input>
-    <input class="list-group-item"></input>
-    <input class="list-group-item"></input>
-    <input class="list-group-item"></input>
-    <input class="list-group-item"></input>
-    <input class="list-group-item"></input>
-    <input class="list-group-item"></input>
-    <input class="list-group-item"></input>
+    {{#times 10}}
+      <input class="list-group-item"></input>
+    {{/times}}
   </div>
 </div>

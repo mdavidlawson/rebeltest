@@ -12,7 +12,15 @@ app.engine('hbs', exphbs({
   defaultLayout: 'main',
   extname: '.hbs',
   partialsDir: "views/partials",
-  layoutsDir: "views/layouts"
+  layoutsDir: "views/layouts",
+  helpers: {
+    times: function(n, block) {
+      var accum = '';
+      for(var i = 0; i < n; ++i)
+          accum += block.fn(i);
+      return accum;
+    }
+  }
 }));
 app.set('view engine', 'hbs');
 
