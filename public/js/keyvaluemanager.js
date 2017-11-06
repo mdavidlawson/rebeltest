@@ -49,6 +49,22 @@ function clearLocalKeyValueList(){
 function getSelectedValue($listGroup){
   return $listGroup.find(".active").val();
 }
+
+function convertToJSON(keyValueSelection){
+  var keyValueSplit = keyValueSelection.split("=");
+  return {
+    key:keyValueSplit[0].trim(),
+    val:keyValueSplit[1].trim()
+  };
+}
+
+// Frontend event handlers
+function onAddClick(){
+  var keyValueSelection = getSelectedValue($("#keyvalueinput"));
+  $.post("/api/keyvaluestore/keyvalue", convertToJSON(keyValueSelection)).done(function(resp){
+    loadKeyValueList($("#sortbynamebtn").hasClass("active"), $("#sortbyvaluebtn").hasClass("active"));
+  });
+}
 function onListClick(e){
   e.preventDefault()
 
@@ -57,19 +73,7 @@ function onListClick(e){
   $that.parent().find('input').removeClass('active');
   $that.addClass('active');
 }
-function onAddClick(){
-  var keyValueSelection = getSelectedValue($("#keyvalueinput"));
-  $.post("/api/keyvaluestore/keyvalue", convertToJSON(keyValueSelection)).done(function(resp){
-    loadKeyValueList($("#sortbynamebtn").hasClass("active"), $("#sortbyvaluebtn").hasClass("active"));
-  });
-}
-function convertToJSON(keyValueSelection){
-  var keyValueSplit = keyValueSelection.split("=");
-  return {
-    key:keyValueSplit[0].trim(),
-    val:keyValueSplit[1].trim()
-  };
-}
+
 function onRemoveSelectedClick(){
   console.log("Removing");
   var keyValueSelection = getSelectedValue($("#keyvalueoutput"));

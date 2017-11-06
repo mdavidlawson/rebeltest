@@ -1,5 +1,8 @@
 var fs = require("fs");
-var rebelteststorepath = "/tmp/rebelteststore.json";
+var rebelteststorepath = process.env.LIST_STORAGE;
+if (!rebelteststorepath) {
+  throw Error("Cannot run application without LIST_STORAGE environment variable being set. Please set this environment variable.");
+}
 var exports = module.exports;
 
 exports.save = function(k, v){

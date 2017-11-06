@@ -1,0 +1,75 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Rebel Tester",
+		"_postman_id": "3848a7ff-0301-ca28-b82c-ba1570b49ae7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all key values",
+			"request": {
+				"url": "http://localhost:8080/api/keyvaluestore",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get as xml",
+			"request": {
+				"url": "http://localhost:8080/api/keyvaluestore/export/xml",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Key Value",
+			"request": {
+				"url": "http://localhost:8080/api/keyvaluestore/keyvalue",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"key\":\"test\", \"val\": \"foo\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Key Values",
+			"request": {
+				"url": "http://localhost:8080/api/keyvaluestore",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Key Value Pair",
+			"request": {
+				"url": "http://localhost:8080/api/keyvaluestore/keyvalue/key/test",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
