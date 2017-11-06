@@ -60,6 +60,11 @@ function convertToJSON(keyValueSelection){
 
 // Frontend event handlers
 function onAddClick(){
+  var $form = $("#keyvalueform");
+  if(!$form.valid || $form.valid()){
+    console.error("Invalid entry, will not submit.");
+    return;
+  }
   var keyValueSelection = getSelectedValue($("#keyvalueinput"));
   $.post("/api/keyvaluestore/keyvalue", convertToJSON(keyValueSelection)).done(function(resp){
     loadKeyValueList($("#sortbynamebtn").hasClass("active"), $("#sortbyvaluebtn").hasClass("active"));
